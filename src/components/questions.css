@@ -1,0 +1,50 @@
+
+#option{
+  border: 1px solid rgba(0, 0, 0, 0.315);
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 7px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+#option:hover{
+  background-color: rgba(128, 128, 128, 0.068);
+}
+
+.select{
+  background-color: blue;
+  color: white;
+}
+
+.submit{
+  margin: 20px;
+  margin-top: 10px;
+  font-size: 20px;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-self: center;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.score{
+  background-color: rgba(0, 0, 0, 0.568);
+  color: white;
+  justify-self: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.results{
+  justify-self: center;
+  margin: 10px;
+  padding: 10px;
+  color: blue;
+  font-size: 18px;
+  cursor: pointer;
+}
