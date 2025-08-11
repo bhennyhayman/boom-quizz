@@ -1,19 +1,18 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import React from 'react';
 import { useState } from 'react';
-import Question from './components/Question';
+import Questions from './components/Questions';
 import Home from './components/Home'; 
 import Results from './components/Results'; 
 
 
 function AppRouter() {
-    const [score, setScore] = useState(null);
+    const [score, setScore] = useState(localStorage.getItem("score") || 0);
 
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/quiz" element={<Question setScore={setScore}/>} />
+                <Route path="/" element={<Home score={score} setScore={setScore} />} />
+                <Route path="/quiz" element={<Questions score={score} setScore={setScore}/>} />
                 <Route path="/results" element={<Results score={score}/>} />
             </Routes>
         </Router>

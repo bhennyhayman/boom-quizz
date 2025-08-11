@@ -1,4 +1,4 @@
-const sortedquestions = [
+const theQuestions = [
   {
     question: "What is the capital of France?",
     options: ["Paris", "London", "Berlin", "Madrid"],
@@ -51,9 +51,4 @@ const sortedquestions = [
   }
 ];
 
-
- const questions = sortedquestions.sort(() => Math.random() - 0.5);
-
-
-
-export default questions;
+export default theQuestions;

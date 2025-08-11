@@ -1,14 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './home.css';
+import { NavLink } from 'react-router-dom';
+import '../App.css';
 
-export default function Home() {
+export default function Home({score, setScore}) {
+
+  
+    function startQuiz(){
+        setScore(0);
+        localStorage.setItem('score',JSON.stringify(score));
+    }
     return (
-        <div className="home-container">
-            <h1>Welcome to the my Quiz App</h1>
-            <Link to="/quiz">
-                <button className="start-quiz bg-blue-500 p-4 text-2xl text-amber-50 border-r">Start Quiz</button>
-            </Link>
+        <div className="flex flex-col h-lvh bg-black">
+            <div className='my-auto mx-auto'>
+                <h1 className='italic text-2xl text-white'>Welcome to the my Quiz App</h1>
+                <button className='text-[20px] bg-blue-500 px-3 py-2 text-white rounded flex justify-self-center mt-3' onClick={startQuiz}><NavLink to={'/quiz'}>Start Quiz</NavLink></button>
+            </div>
         </div>
     );
 }

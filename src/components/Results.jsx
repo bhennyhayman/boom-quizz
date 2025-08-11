@@ -1,50 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header';
-import questions from '../data/questions.js';
-import { Link, useLocation } from 'react-router-dom';
+import theQuestions from '../data/questions';
+import { NavLink, useLocation } from 'react-router-dom';
 
-export default function Results() {
+export default function Results({score,setScore}) {
     const location = useLocation();
-    const [score, setScore] = useState(null);
-    const [selectedOptions, setSelectedOptions] = useState([]);
-
-    useEffect(() => {
-        const state = location.state || {};
-        const storedScore = localStorage.getItem('score');
-        const storedSelectedOptions = localStorage.getItem('selectedOptions');
-
-        if (state.score !== undefined && state.selectedOptions !== undefined) {
-            setScore(state.score);
-            setSelectedOptions(state.selectedOptions);
-        } else if (storedScore !== null && storedSelectedOptions !== null) {
-            setScore(parseInt(storedScore, 10));
-            setSelectedOptions(JSON.parse(storedSelectedOptions));
-        }
-    }, [location.state]);
 
     return (
         <div>
             <Header />
-            <h1 className='underline m-2'>Results</h1>
+            <h1 className='text-3xl px-3 py-2 text-blue-600 text-center italic '>Results</h1>
             
-            {score !== null && <>
-              <div className="score">Your score: {score}/{questions.length}</div>
-            </>}
-
-            {questions.map((item, index) => 
-            <div key={index} className={`m-4 p-4 border-2 border-gray-300 rounded-lg ${selectedOptions[index] !== item.answer ? 'bg-red-200' : 'bg-green-200'}`}>
-              <div>{index+1}. {item.question}</div>
-              <div className='p-2'>Answer: {item.answer}</div>
-              <div className='p-2'>Your answer: {selectedOptions[index] !== null && selectedOptions[index] !== undefined ? selectedOptions[index] : 'N/A'}</div>
+            <div className='bg-fuchsia-700 text-white justify-center p-10 mx-20 text-[18px] items-center rounded-2xl shadow-2xl shadow-cyan-800'>
+              <div className='text-center text-2xl mb-5 font-bold italic'>You have completed the quiz</div>
+              <div className='text-center'>You scored : <span>{score} / {theQuestions.length}</span></div>
             </div>
-          )}
-          
-          <Link to='/'>
-            <button id='home' className='bg-blue-500 p-2 px-4 text-1xl text-amber-50 border-r rounded-lg justify-center flex justify-items-center justify-self-center'>
-              Home
-            </button>
-          </Link>
-          
+
+            <div className='flex flex-col justify-self-center m-5 p-5 align-middle items-center text-center'>
+              <p className='bg-blue-400 p-2 m-2 text-white px-3 rounded hover:bg-blue-600' onClick={()=> {setScore(0)
+                localStorage.setItem('score', JSON.stringify(score))
+              }}><NavLink to={'/quiz'}>Restart Quiz</NavLink></p>
+              <p className='bg-blue-400 p-2 m-2 text-white px-3 rounded hover:bg-blue-600'><NavLink to={'/'}>Home</NavLink></p>
+            </div>
+            
         </div>
     )
 }
