@@ -6,17 +6,24 @@ import Results from './components/Results';
 
 
 function AppRouter() {
-    const [score, setScore] = useState(localStorage.getItem("score") || 0);
 
+    const [score, setScore] = useState(JSON.parse(localStorage.getItem('score')) || 0);
+    const [questIndex, setQuestIndex] = useState(JSON.parse(localStorage.getItem('qIndex')) || 0);
+    const [disable, setDisable] = useState(localStorage.getItem('disable') || false);
+
+   
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Home score={score} setScore={setScore} />} />
-                <Route path="/quiz" element={<Questions score={score} setScore={setScore}/>} />
-                <Route path="/results" element={<Results score={score}/>} />
+                <Route path="/" element={<Home score={score} setScore={setScore} questIndex={questIndex} setQuestIndex={setQuestIndex} disable={disable} setDisable={setDisable}/>} />
+
+                <Route path="/quiz" element={<Questions score={score} setScore={setScore} questIndex={questIndex} setQuestIndex={setQuestIndex} disable={disable} setDisable={setDisable}/>} />
+                <Route path="/results" element={<Results score={score} setScore={setScore} setQuestIndex={setQuestIndex} disable={disable} setDisable={setDisable}/>} />
             </Routes>
         </Router>
     );
 }
+
+
 
 export default AppRouter;

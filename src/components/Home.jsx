@@ -1,12 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import '../App.css';
 
-export default function Home({score, setScore}) {
+export default function Home({score, questIndex, setScore, setQuestIndex, setDisable, disable}) {
 
   
     function startQuiz(){
         setScore(0);
-        localStorage.setItem('score',JSON.stringify(score));
+        setQuestIndex(0);
+        setDisable(false);
+        localStorage.setItem('score', JSON.stringify(score));
+        localStorage.setItem('qIndex', JSON.stringify(questIndex));
+        localStorage.setItem('disable', disable);
     }
     return (
         <div className="flex flex-col h-lvh bg-black">
